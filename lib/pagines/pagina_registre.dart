@@ -1,3 +1,4 @@
+import 'package:firebase_adriacruz/auth/servei_auth.dart';
 import 'package:firebase_adriacruz/components/boto_auth.dart';
 import 'package:firebase_adriacruz/components/text_field_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,10 @@ class PaginaRegistre extends StatelessWidget {
   const PaginaRegistre({super.key});
 
   void ferRegistre() {
+
+    final ServeiAuth serveiAuth = ServeiAuth();
+
+    serveiAuth.registraAmbEmailIPassword("email1@email1.com", "123456");
     
   }
 
