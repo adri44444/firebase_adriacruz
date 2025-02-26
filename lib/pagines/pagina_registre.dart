@@ -26,7 +26,7 @@ class PaginaRegistre extends StatelessWidget {
       return;
     }
 
-    String? error = await ServeiAuth().registraAmbEmailIPassword(email, password);
+    String? error = await ServeiAuth().registreAmbEmailIPassword(email, password);
 
     if (error != null) {
       showDialog(
