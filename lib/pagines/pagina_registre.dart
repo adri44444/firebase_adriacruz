@@ -174,7 +174,8 @@ class PaginaRegistre extends StatelessWidget {
                 //Botó registrar't
                 BotoAuth(
                   text: "Registra't",
-                  onTap: () => ferRegistre(context, tecEmail.text,
+                  onTap: () => ferRegistre(
+                    context, tecEmail.text,
                       tecPassword.text, tecConfPass.text),
                 ),
               ],

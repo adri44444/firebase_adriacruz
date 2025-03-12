@@ -7,6 +7,14 @@ class ServeiAuth {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 
+  // Usuari actual 
+
+
+  User?GetUsuariActual() {
+    
+  }
+
+
   // Fer logout.
   Future<void> ferLogout() async {
 
@@ -41,11 +49,25 @@ class ServeiAuth {
           password: password,
       );
 
-      _firestore.collection("Usuaris").doc(credencialUsuari.user!.uid).set({
+      // Comproben si l'usuari ja esta donat d'alta a firestore(a firebaseAuth,si hem aqui,ja sabem que si hi es).Si no estigues donat d'alta el donem d'alta(a firestore).Fet per si de cas es dones d'alta un uduari directament desde de la consola
+
+
+      final QuerySnapshot querySnapshot = await _firestore
+      .collection("Usuaris")
+      .where("email",isEqualTo: email)
+      .get();
+
+      if(querySnapshot.docs.isEmpty){
+
+        
+        _firestore.collection("Usuaris").doc(credencialUsuari.user!.uid).set({
         "uid": credencialUsuari.user!.uid,
         "email": email,
         "nom": "",
       });
+      }
+
+      
 
         return null;
 
