@@ -1,0 +1,2 @@
+C:/Users/adri/Documents/FlutterProjects/firebase_adriacruz/android/app/.cxx/Debug/l5m4t5mj/x86/CMakeFiles/edit_cache.dir
+C:/Users/adri/Documents/FlutterProjects/firebase_adriacruz/android/app/.cxx/Debug/l5m4t5mj/x86/CMakeFiles/rebuild_cache.dir

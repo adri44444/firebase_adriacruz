@@ -1,9 +1,31 @@
 
+
 import 'package:firebase_adriacruz/auth/portal_auth.dart';
-import 'package:firebase_adriacruz/pagines/pagina_login.dart';
+import 'package:firebase_adriacruz/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if(Firebase.apps.isEmpty){
+
+    try{
+
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e){
+      print("Error iniciant Firebase");
+    }
+
+  }else{
+    print("Error, Firebase ja està inicialitzat");
+  }
+
+
+
   runApp(const MainApp());
 }
 
@@ -13,28 +35,47 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-
-      
       debugShowCheckedModeBanner: false,
-
-      home: PortalAuth()
-      ,
+      home: PortalAuth(),
     );
   }
 }
 
+
 /*
-1)tenir Node.js instalat
-  -En acabar, es pot cmprobar fent:
-      node -v 
-      npm -v
-2) anar a la web de firebase i clicar a "Go to console",
-  -Tenir en compte amb quin compte de google.
-3) desde la consola de firebase ceeum un projecte de firebase
-4)anem al menu compilacion y habilitem: 
-Authentication y firestore database 
-5) en un cm como la del VS Code, fem :
-  npm install -g firebase-tools (aixo instala firebase)
-6) flutter pub global activate flutterfire_cli
+1) Tenir Node.js instalat
+  -En acabar, es pot comprobar fent:
+    node -v
+    nom -v
+
+2) Anar a la web de Firebase i clicar a "Go to console".
+  
+Tenir en compte amb quin compte de Google estas.
+
+3) Des de la consola de Firebase, creem un projecte de Firebase.
+
+4) Anem al menu Compilación i habilitem:
+    Authentication i Firestore Databas
+
+5) En una cmd per exemple la del VS Code, fem:
+    npm install -g firebase-tools
+    (això instala Firebase al dispositiu)
+    Pot fer falta fer abans:
+     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+6) dart pub global activate flutterfire_cli
+
+7) flutterfire configure
+   
+Seleccionem el projecte de Firebase
+    amb el que el volem vincular.
+Deiexem seleccionats només els dispositius amb els que 
+  volem que funcioni l'aplicació (en aquest cas android i web).
+
+
+8) Instal.lem les dependències de Firebase que vulguem utilizar:
+   
+flutter pub add firebase_core
+flutter pub add firebase_auth(amb això, marxen els errors de firebase_options.dart)
 
 */

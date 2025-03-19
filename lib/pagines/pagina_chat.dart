@@ -22,10 +22,18 @@ class _PaginaChatState extends State<PaginaChat> {
   final TextEditingController tecMissatge = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
+  FocusNode teclatMobil = FocusNode();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    teclatMobil.addListener(() {
+      Future.delayed(const Duration(milliseconds: 500), () {
+        ferScrollCapAvall();
+      });
+    });
 
     Future.delayed(const Duration(milliseconds: 500), () {
       ferScrollCapAvall();
@@ -34,7 +42,7 @@ class _PaginaChatState extends State<PaginaChat> {
 
   void ferScrollCapAvall() {
     _scrollController.animateTo(
-      _scrollController.position.maxScrollExtent + 100 ,
+      _scrollController.position.maxScrollExtent + 100,
       duration: const Duration(seconds: 1),
       curve: Curves.fastOutSlowIn,
     );
@@ -139,9 +147,8 @@ class _PaginaChatState extends State<PaginaChat> {
 
       tecMissatge.clear();
       Future.delayed(const Duration(milliseconds: 50), () {
-      ferScrollCapAvall();
-    });
-      
+        ferScrollCapAvall();
+      });
     }
   }
 }

@@ -4,6 +4,7 @@
 import 'package:firebase_adriacruz/auth/servei_auth.dart';
 import 'package:firebase_adriacruz/chat/servei_chat.dart';
 import 'package:firebase_adriacruz/components/item_usuari.dart';
+import 'package:firebase_adriacruz/pagines/editar_dades_usuari';
 import 'package:firebase_adriacruz/pagines/pagina_chat.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,17 @@ class _PaginaIniciState extends State<PaginaInici> {
         backgroundColor: Colors.deepPurple[200],
         title: Text(ServeiAuth().GetUsuariActual()!.email!),
         actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const EditarDadesUsuari(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.person),
+          ),
           IconButton(
             onPressed: () {
               ServeiAuth().ferLogout();
